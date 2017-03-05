@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd">
+    <!--Root Context. Ресурсы, доступные всему приложению, всем сервлетам-->
+
+    <!--Использование конфигурационных аннотаций-->
+    <context:annotation-config/>
+
+    <!--Service Impl-->
+    <context:component-scan base-package="ru.eninja.service"/>
+
+    <!--Поддержка транзакций-->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <!--Доступ к базе данных-->
+    <import resource="persistence.xml"/>
+
+    <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+        <property name="mediaTypes">
+            <map>
+                <entry key="json" value="application/json"/>
+                <entry key="xml" value="text/xml"/>
+                <entry key="htm" value="text/html"/>
+            </map>
+        </property>
+        <property name="defaultContentType" value="text/html"/>
+    </bean>
+</beans>
