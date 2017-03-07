@@ -1,7 +1,6 @@
 package ru.eninja.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -9,14 +8,13 @@ import ru.eninja.domain.User;
 import ru.eninja.service.UserService;
 
 import javax.validation.Valid;
-
 import java.util.List;
 
 import static org.springframework.http.HttpStatus.*;
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 
-@Controller
+@RestController
 @RequestMapping(value = "/users")
 public class UserController {
 
@@ -24,12 +22,12 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping(method = GET)
-    public @ResponseBody List<User> getUsers() {
+    public List<User> getUsers() {
         return userService.getUserList();
     }
 
     @RequestMapping(value = "/{id}", method = GET)
-    public @ResponseBody User getUser(@PathVariable long id) {
+    public User getUser(@PathVariable long id) {
         return userService.getUserById(id);
     }
 
@@ -47,7 +45,7 @@ public class UserController {
 
     @RequestMapping(method = POST)
     @ResponseStatus(CREATED)
-    public @ResponseBody User createUser(@RequestBody @Valid User user, BindingResult result) throws BindException {
+    public User createUser(@RequestBody @Valid User user, BindingResult result) throws BindException {
         if (result.hasErrors()) {
             throw new BindException(result);
         }

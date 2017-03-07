@@ -1,14 +1,15 @@
 package ru.eninja.domain;
 
+//import org.springframework.security.core.GrantedAuthority;
+
 import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 
 
 @Entity
 @Table(name = "role")
-public class Role implements GrantedAuthority {
+public class Role {
 
     @Id
     @GeneratedValue
@@ -31,7 +32,7 @@ public class Role implements GrantedAuthority {
         this.authority = authority;
     }
 
-    @Override
+//    @Override
     public String getAuthority() {
         return authority;
     }
