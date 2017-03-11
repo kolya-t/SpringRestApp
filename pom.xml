@@ -7,7 +7,12 @@
     <groupId>ru.eninja.springrestapp</groupId>
     <artifactId>springrestapp</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>server</module>
+        <module>client</module>
+    </modules>
 
     <properties>
         <!-- Spring -->
