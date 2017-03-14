@@ -1,4 +1,4 @@
-package ru.eninja.web;
+package ru.eninja.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindException;
@@ -15,8 +15,8 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 
 @RestController
-@RequestMapping(value = "/users")
-public class UserController {
+@RequestMapping(value = "/api/users")
+public class UserApi {
 
     @Autowired
     private UserService userService;

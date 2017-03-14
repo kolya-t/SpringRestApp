@@ -1,7 +1,7 @@
 package ru.eninja.service;
 
 
-import com.sun.istack.internal.NotNull;
+//import com.sun.istack.internal.NotNull;
 import org.springframework.stereotype.Service;
 import ru.eninja.domain.Role;
 
@@ -50,7 +50,7 @@ public interface RoleService {
      * @param id role id
      * @return {@code true} if role exists and {@code false} otherwise
      */
-    boolean exists(@NotNull Integer id);
+    boolean exists(/*@NotNull */Integer id);
 
     /**
      * @return roles count

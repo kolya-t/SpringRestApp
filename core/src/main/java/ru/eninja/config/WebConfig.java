@@ -11,7 +11,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
 
-// web.xml
+// ru.eninja.api.xml
 public class WebConfig implements WebApplicationInitializer {
 
     @Override

@@ -4,13 +4,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>client</artifactId>
-    <packaging>war</packaging>
+    <artifactId>core</artifactId>
+    <packaging>jar</packaging>
 
     <parent>
-        <artifactId>springrestapp</artifactId>
-        <groupId>ru.eninja.springrestapp</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <artifactId>backend-server</artifactId>
+        <groupId>ru.eninja.spring</groupId>
+        <version>0.1</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 </project>

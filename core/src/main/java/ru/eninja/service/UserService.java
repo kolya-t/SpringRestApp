@@ -1,6 +1,6 @@
 package ru.eninja.service;
 
-import com.sun.istack.internal.NotNull;
+//import com.sun.istack.internal.NotNull;
 import ru.eninja.domain.User;
 
 import java.util.List;
@@ -48,7 +48,7 @@ public interface UserService {
      * @param id user id
      * @return {@code true} if user exists and {@code false} otherwise
      */
-    boolean exists(@NotNull Long id);
+    boolean exists(/*@NotNull */Long id);
 
     /**
      * @return users count

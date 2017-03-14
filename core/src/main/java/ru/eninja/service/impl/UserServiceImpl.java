@@ -1,6 +1,6 @@
 package ru.eninja.service.impl;
 
-import com.sun.istack.internal.NotNull;
+//import com.sun.istack.internal.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -66,7 +66,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean exists(@NotNull Long id) {
+    public boolean exists(/*@NotNull */Long id) {
         return userDao.exists(id);
     }
 

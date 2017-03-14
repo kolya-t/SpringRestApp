@@ -1,6 +1,6 @@
 package ru.eninja.service.impl;
 
-import com.sun.istack.internal.NotNull;
+//import com.sun.istack.internal.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -48,7 +48,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public boolean exists(@NotNull Integer id) {
+    public boolean exists(/*@NotNull */Integer id) {
         return roleDao.exists(id);
     }
 
