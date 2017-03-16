@@ -4,27 +4,31 @@ import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.DispatcherServlet;
-import ru.eninja.config.spring.ApplicationConfig;
+import ru.eninja.config.spring.MvcConfig;
+import ru.eninja.config.spring.PersistenceConfig;
 
 import javax.servlet.FilterRegistration;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
 
-// ru.eninja.api.xml
+
+/**
+ * Performs functions of web.xml
+ */
 public class WebConfig implements WebApplicationInitializer {
 
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
         // create root Spring application
         AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
-        rootContext.register(ApplicationConfig.class);
+        rootContext.register(MvcConfig.class, PersistenceConfig.class);
 
         // register and map the dispatcher servlet
         ServletRegistration.Dynamic dispatcher = servletContext.addServlet("dispatcher",
                 new DispatcherServlet(rootContext));
         dispatcher.setLoadOnStartup(1);
-        dispatcher.addMapping("/");
+        dispatcher.addMapping("/api/*");
 
         // encoding filter
         FilterRegistration.Dynamic encodingFilter = servletContext.addFilter("encoding-filter",

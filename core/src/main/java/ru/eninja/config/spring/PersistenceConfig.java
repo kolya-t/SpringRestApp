@@ -3,6 +3,7 @@ package ru.eninja.config.spring;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
@@ -22,6 +23,7 @@ import java.util.Properties;
 @EnableTransactionManagement
 @PropertySource("classpath:persistence.properties")
 @EnableJpaRepositories("ru.eninja.dao")
+@ComponentScan("ru.eninja.service")
 public class PersistenceConfig {
 
     private Environment env;
@@ -78,7 +80,8 @@ public class PersistenceConfig {
         for (String propertyKey : new String[]{
                 "hibernate.dialect",
                 "hibernate.hbm2ddl.auto",
-                "hibernate.show_sql"
+                "hibernate.show_sql",
+                "hibernate.format_sql"
         }) {
             properties.put(propertyKey, env.getProperty(propertyKey));
         }
