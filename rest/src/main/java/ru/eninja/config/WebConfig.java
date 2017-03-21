@@ -28,7 +28,7 @@ public class WebConfig implements WebApplicationInitializer {
         ServletRegistration.Dynamic dispatcher = servletContext.addServlet("dispatcher",
                 new DispatcherServlet(rootContext));
         dispatcher.setLoadOnStartup(1);
-        dispatcher.addMapping("/api/*");
+        dispatcher.addMapping("/"); // /api/*
 
         // encoding filter
         FilterRegistration.Dynamic encodingFilter = servletContext.addFilter("encoding-filter",
