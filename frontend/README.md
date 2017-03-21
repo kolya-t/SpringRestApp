@@ -1,1 +1,1 @@
-# SpringRestApp - frontend
+# SpringRestApp [frontend]
