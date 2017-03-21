@@ -5,12 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ru.eninja.springrestapp</groupId>
-    <artifactId>test-project</artifactId>
+    <artifactId>frontend</artifactId>
     <version>0.1</version>
-    <packaging>pom</packaging>
 
-    <modules>
-        <module>frontend</module>
-        <module>backend</module>
-    </modules>
 </project>

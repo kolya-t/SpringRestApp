@@ -8,8 +8,8 @@
     <packaging>war</packaging>
 
     <parent>
-        <artifactId>backend-server</artifactId>
-        <groupId>ru.eninja.spring</groupId>
+        <artifactId>backend</artifactId>
+        <groupId>ru.eninja.springrestapp</groupId>
         <version>0.1</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
