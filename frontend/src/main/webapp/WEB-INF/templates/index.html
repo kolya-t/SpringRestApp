@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Список пользователей</title>
+    <script src="../../static/js/jquery3.1.1.js" th:src="@{/js/jquery3.1.1.min.js}"></script>
+</head>
+<body>
+
+<script type="text/javascript">
+    function send() {
+        var person = {
+            name:$("#id-name").val(),
+            address:$("#id-address").val(),
+            phone:$("#id-phone").val()
+        };
+
+        $('#target').html('sending..');
+
+        $.ajax({
+            url: '/test/PersonSubmit',
+            type: 'post',
+            dataType: 'json',
+            success: function (data) {
+                $('#target').html(data.msg);
+            },
+            data: person
+        });
+    }
+</script>
+
+<button class="btn btn-primary" id="getUsersBtn">Загрузить таблицу</button>
+<table border="1">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>login</th>
+            <th>password</th>
+        </tr>
+    </thead>
+    <tbody id="tbody">
+
+    </tbody>
+</table>
+</body>
+</html>
