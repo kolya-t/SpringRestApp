@@ -4,9 +4,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>ru.eninja.springrestapp</groupId>
     <artifactId>frontend</artifactId>
     <version>0.1</version>
+
+    <parent>
+        <groupId>ru.eninja.springrestapp</groupId>
+        <artifactId>rest-project</artifactId>
+        <version>0.1</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
 
     <packaging>war</packaging>
 
@@ -62,8 +68,7 @@
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>${tomcat7-maven-plugin.version}</version>
                 <configuration>
-                    <port>8080</port>
-                    <path>/</path>
+                    <skip>true</skip>
                 </configuration>
             </plugin>
         </plugins>
@@ -71,7 +76,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>ru.eninja.spring</groupId>
+            <!--TODO: Вынести domain из core и подключить domain вместо него-->
+            <groupId>ru.eninja.springrestapp</groupId>
             <artifactId>core</artifactId>
             <version>0.1</version>
         </dependency>

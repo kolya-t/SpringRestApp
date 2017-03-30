@@ -1,10 +1,10 @@
 /* Common CRUD */
-var prefix = '/api/';
-var get = function (urlPostfix) {
+var urlPrefix = '/api/';
+var ajaxGet = function (urlPostfix) {
     var data = null;
     $.ajax({
         type: 'GET',
-        url: prefix + urlPostfix,
+        url: urlPrefix + urlPostfix,
         success: function (response) {
             data = response;
         },
@@ -15,10 +15,10 @@ var get = function (urlPostfix) {
     return data;
 };
 
-var post = function (urlPostfix, data) {
+var ajaxPost = function (urlPostfix, data) {
     $.ajax({
         type: 'POST',
-        url: prefix + urlPostfix,
+        url: urlPrefix + urlPostfix,
         data: data,
         success: function (response) {
             data = response;
@@ -30,10 +30,10 @@ var post = function (urlPostfix, data) {
     return data;
 };
 
-var put = function (urlPostfix, data) {
+var ajaxPut = function (urlPostfix, data) {
     $.ajax({
         type: 'PUT',
-        url: prefix + urlPostfix,
+        url: urlPrefix + urlPostfix,
         data: data,
         error: function (error) {
             console.log('Error: ' + error);
@@ -41,12 +41,35 @@ var put = function (urlPostfix, data) {
     });
 };
 
+var ajaxDelete = function (urlPostfix) {
+    $.ajax({
+        type: 'DELETE',
+        url: urlPrefix + urlPostfix,
+        error: function (error) {
+            console.log('Error: ' + error);
+        }
+    });
+};
 
+/* User CRUD */
 var getUsers = function () {
     return get('users');
 };
 
 var getUser = function (userId) {
     return get('users/' + userId);
+};
+
+var postUser = function (user) {
+    user = ajaxPost('users', user);
+    return user;
+};
+
+var putUser = function (user) {
+    ajaxPut('users/' + user.id, user);
+};
+
+var deleteUser = function (userId) {
+    ajaxDelete('users/' + userId);
 };
 
