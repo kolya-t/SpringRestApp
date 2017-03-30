@@ -25,12 +25,11 @@ public class UserRestController {
 
     @RequestMapping(method = GET)
     public List<User> getUsers() {
-        System.out.println("UserRestController.getUsers");
         return userService.getUserList();
     }
 
     @RequestMapping(value = "/{id}", method = GET)
-    public User getUser(@PathVariable long id, HttpServletResponse response) {
+    public User getUser(@PathVariable("id") long id, HttpServletResponse response) {
         User user = userService.getUserById(id);
         if (user == null) {
             throw new ResourceNotFoundException();
@@ -41,7 +40,7 @@ public class UserRestController {
 
     @RequestMapping(value = "/{id}", method = PUT)
     @ResponseStatus(NO_CONTENT)
-    public void putUser(@PathVariable long id,
+    public void putUser(@PathVariable("id") long id,
                         @RequestBody @Valid User user,
                         HttpServletResponse response) {
 
@@ -51,7 +50,7 @@ public class UserRestController {
 
     @RequestMapping(value = "/{id}", method = DELETE)
     @ResponseStatus(NO_CONTENT)
-    public void deleteUser(@PathVariable long id) {
+    public void deleteUser(@PathVariable("id") long id) {
         userService.deleteUser(id);
     }
 

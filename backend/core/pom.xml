@@ -15,6 +15,9 @@
     </parent>
 
     <properties>
+        <!--H2 DB-->
+        <dbh2.version>1.4.194</dbh2.version>
+
         <!--Spring Data JPA-->
         <spring-data-jpa.version>1.11.0.RELEASE</spring-data-jpa.version>
 
@@ -42,6 +45,13 @@
     </build>
 
     <dependencies>
+        <!-- H2 DB -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${dbh2.version}</version>
+        </dependency>
+
         <!-- Spring ORM -->
         <dependency>
             <groupId>org.springframework</groupId>

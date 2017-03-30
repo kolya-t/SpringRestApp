@@ -4,11 +4,17 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>ru.eninja.springrestapp</groupId>
     <artifactId>backend</artifactId>
     <version>0.1</version>
 
     <packaging>pom</packaging>
+
+    <parent>
+        <groupId>ru.eninja.springrestapp</groupId>
+        <artifactId>rest-project</artifactId>
+        <version>0.1</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
 
     <modules>
         <module>core</module>
@@ -29,6 +35,7 @@
         <jdk.version>1.8</jdk.version>
         <maven-compiler-plugin.version>3.6.1</maven-compiler-plugin.version>
         <tomcat7-maven-plugin.version>2.2</tomcat7-maven-plugin.version>
+        <maven-war-plugin.version>3.0.0</maven-war-plugin.version>
     </properties>
 
     <build>
@@ -45,12 +52,20 @@
             </plugin>
 
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>${maven-war-plugin.version}</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+
+            <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>${tomcat7-maven-plugin.version}</version>
                 <configuration>
-                    <port>8080</port>
-                    <path>/</path>
+                    <skip>true</skip>
                 </configuration>
             </plugin>
         </plugins>
