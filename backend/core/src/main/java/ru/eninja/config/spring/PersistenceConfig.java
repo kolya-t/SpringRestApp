@@ -1,11 +1,7 @@
 package ru.eninja.config.spring;
 
-import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -16,12 +12,14 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManagerFactory;
+import javax.sql.DataSource;
 import java.util.Properties;
 
 
 @Configuration
 @EnableTransactionManagement
-@PropertySource("classpath:persistence.properties")
+@PropertySource("classpath:app.properties")
+@Import({DevelopmentConfig.class, ProductionConfig.class})
 @EnableJpaRepositories("ru.eninja.dao")
 @ComponentScan("ru.eninja.service")
 public class PersistenceConfig {
@@ -31,25 +29,15 @@ public class PersistenceConfig {
     @Autowired
     public void setEnv(Environment env) {
         this.env = env;
+        env.acceptsProfiles(env.getRequiredProperty("spring.profiles.active"));
     }
 
-    @Bean(name = "dataSource")
-    public BasicDataSource getDataSource() {
-        BasicDataSource dataSource = new BasicDataSource();
-
-        dataSource.setDriverClassName(env.getRequiredProperty("database.driverClassName"));
-        dataSource.setUrl(env.getRequiredProperty("database.url"));
-        dataSource.setUsername(env.getRequiredProperty("database.username"));
-        dataSource.setPassword(env.getRequiredProperty("database.password"));
-
-        return dataSource;
-    }
-
-    @Bean(name = "entityManagerFactory")
-    public LocalContainerEntityManagerFactoryBean getEntityManagerFactory() {
+    @Autowired
+    @Bean("entityManagerFactory")
+    public LocalContainerEntityManagerFactoryBean getEntityManagerFactory(DataSource dataSource) {
         LocalContainerEntityManagerFactoryBean entityManagerFactory = new LocalContainerEntityManagerFactoryBean();
 
-        entityManagerFactory.setDataSource(getDataSource());
+        entityManagerFactory.setDataSource(dataSource);
         entityManagerFactory.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         entityManagerFactory.setJpaDialect(new HibernateJpaDialect());
         entityManagerFactory.setPackagesToScan(env.getRequiredProperty("packages_to_scan.entities"));
@@ -59,17 +47,17 @@ public class PersistenceConfig {
     }
 
     @Autowired
-    @Bean(name = "transactionManager")
-    public JpaTransactionManager transactionManager(EntityManagerFactory emf) {
+    @Bean("transactionManager")
+    public JpaTransactionManager transactionManager(EntityManagerFactory emf, DataSource dataSource) {
         JpaTransactionManager transactionManager = new JpaTransactionManager(emf);
 
-        transactionManager.setDataSource(getDataSource());
+        transactionManager.setDataSource(dataSource);
         transactionManager.setEntityManagerFactory(emf);
 
         return transactionManager;
     }
 
-    @Bean(name = "exceptionTranslation")
+    @Bean("exceptionTranslation")
     public PersistenceExceptionTranslationPostProcessor getExceptionTranslation() {
         return new PersistenceExceptionTranslationPostProcessor();
     }

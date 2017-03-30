@@ -20,27 +20,24 @@
 
         <!--Jackson JSON-->
         <jackson.version>2.8.7</jackson.version>
-
-        <!--Plugins-->
-        <maven-war-plugin.version>3.0.0</maven-war-plugin.version>
     </properties>
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>${maven-war-plugin.version}</version>
-                <configuration>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
-                </configuration>
-            </plugin>
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-war-plugin</artifactId>-->
+                <!--<version>${maven-war-plugin.version}</version>-->
+                <!--<configuration>-->
+                    <!--<failOnMissingWebXml>false</failOnMissingWebXml>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
         </plugins>
     </build>
 
     <dependencies>
         <dependency>
-            <groupId>ru.eninja.spring</groupId>
+            <groupId>ru.eninja.springrestapp</groupId>
             <artifactId>core</artifactId>
             <version>0.1</version>
         </dependency>
