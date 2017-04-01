@@ -2,3 +2,5 @@
 *.iml
 *.log
 target/
+src/main/webapp/static/etc/
+src/main/webapp/static/node_modules/

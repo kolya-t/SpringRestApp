@@ -34,7 +34,6 @@
         <!-- Plugins -->
         <jdk.version>1.8</jdk.version>
         <maven-compiler-plugin.version>3.6.1</maven-compiler-plugin.version>
-        <tomcat7-maven-plugin.version>2.2</tomcat7-maven-plugin.version>
         <maven-war-plugin.version>3.0.0</maven-war-plugin.version>
     </properties>
 
@@ -63,11 +62,11 @@
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
-                <version>${tomcat7-maven-plugin.version}</version>
                 <configuration>
                     <skip>true</skip>
                 </configuration>
             </plugin>
+
         </plugins>
     </build>
 

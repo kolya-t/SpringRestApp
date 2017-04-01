@@ -8,8 +8,9 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="../../../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
-    <link rel="stylesheet" href="../../../static/css/bootstrap-select.min.css"
+    <link rel="stylesheet" href="../../../static/node_modules/bootstrap/dist/css/bootstrap.css"
+          th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="../../../static/node_modules/bootstrap-select/dist/css/bootstrap-select.css"
           th:href="@{/css/bootstrap-select.min.css}"/>
 </head>
 <body>
@@ -22,6 +23,7 @@
                     <h3 class="panel-title">Редактирование пользователя</h3>
                 </div>
                 <div class="panel-body">
+                    <!--/*@thymesVar id="user" type="ru.eninja.domain.User"*/-->
                     <form role="form" th:object="${user}" action="edit.html" th:action="@{/users/edit}" method="post">
                         <div class="form-group">
                             <input th:field="*{id}" type="number" placeholder="Id"
@@ -44,6 +46,7 @@
                         </div>
                         <div class="form-group">
                             <select id="role" th:field="*{roles}" class="selectpicker form-control" multiple="multiple">
+                                <!--/*@thymesVar id="roleList" type="java.util.List<ru.eninja.domain.Role>"*/-->
                                 <option th:each="r: ${roleList}"
                                         th:value="${{r}}"
                                         th:text="${r.authority}">
@@ -62,8 +65,10 @@
         </div>
     </div>
 </div>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
+
+<script src="../../../static/node_modules/jquery/dist/jquery.js" th:src="@{/js/jquery.min.js}"></script>
+<script src="../../../static/node_modules/bootstrap/dist/js/bootstrap.js" th:src="@{/js/bootstrap.min.js}"></script>
+<script src="../../../static/node_modules/bootstrap-select/js/bootstrap-select.js"
+        th:src="@{/js/bootstrap-select.js}"></script>
 </body>
 </html>
